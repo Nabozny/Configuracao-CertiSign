@@ -3,7 +3,7 @@ CFM = Confirmation
 """
 import os 
 import subprocess
-from zipfile import ZipFile
+import getpass
 
 os.system('cls')
 
@@ -41,10 +41,8 @@ def createUser():
     print (f"O usuário {firstName} {lastName} foi criado com sucesso!")
 
 def cfgPw():
-    subprocess.run("powershell.exe secedit /export /cfg cfgpw.inf")
-    subprocess.run("powershell.exe cfgpw.inf")
-    os.system("pause")
-    subprocess.run("powershell.exe secedit /configure /db C:\Windows\Security\Database\local.sdb /cfg cfgpw.inf /areas SECURITYPOLICY")
+    user = getpass.getuser()
+    os.system(f'runas /user:administrador "C:\\Users\\{user}\\Desktop\\teste\\CfgPwRequirements.bat"')
 
 
 ### CRIAÇÃO DOS USUARIOS
