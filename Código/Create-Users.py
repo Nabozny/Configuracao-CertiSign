@@ -1,6 +1,7 @@
 import os 
 import subprocess
 import getpass
+from zipfile import ZipFile
 
 os.system ('cls')
 
@@ -49,6 +50,8 @@ if cfmPro != "s":
     os.system ('pause')
     exit ()
 print('\n')
+
+
 ### CRIAÇÃO DOS USUARIOS
 print ('-' * 30)
 print ('-' * 30)
