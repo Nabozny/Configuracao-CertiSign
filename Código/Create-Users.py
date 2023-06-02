@@ -64,7 +64,6 @@ while moreUser == 's':
     createUser()
     moreUser = input ("Deseja adicionar mais usuários? (s/n) \n")
     
-
 admUser = input ("Deseja criar usuário administrador? (s/n) \n")
 if admUser == "s":
     subprocess.run ("powershell.exe New-LocalUser -Name 'Ar Faciap' -Password (ConvertTo-SecureString -String arfaciap@123 -AsPlainText -Force) -FullName 'Ar Faciap' -Description 'Ar Faciap'")
@@ -72,12 +71,14 @@ if admUser == "s":
     os.system ('pause')
 
 ### CONFIGURAÇÃO DOS USUARIOS 
-
-print("Favor rodar script de habilitação do usuario ADMINISTRADOR!!")
-os.system('pause')
-search = ', '.join(search_docs('CfgPwRequirements.bat', 'C:\\'))
-print(' ' * 10, 'CONFIGURAÇÃO DE POLÍTICAS DE USUÁRIOS!!')
-cfgPw ()
+configpw = input ('Deseja realizar a configuração de usuário?')
+if configpw == 's':
+    print("Favor rodar script de habilitação do usuario ADMINISTRADOR!!")
+    os.system('pause')
+    search = ', '.join(search_docs('CfgPwRequirements.bat', 'C:\\'))
+    print(' ' * 10, 'CONFIGURAÇÃO DE POLÍTICAS DE USUÁRIOS!!')
+    cfgPw ()
+    os.system ('pause')
 
 print ("Configuração realizada com sucesso!!")
 os.system ('pause')
