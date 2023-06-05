@@ -87,11 +87,8 @@ if configpw == 's':
 
 ### DOWNLOAD, INSTALAÇÃO E EXCLUSÃO DOS APLICATIVOS 
 
-os.system("cls")
-unzip = ZipFile('\\Apps\\toInstall.zip', 'r')
-unzip.extractall('\\Apps\\unzipped\\bat')
-filePath = os.listdir("\\Apps\\unzipped\\bat")
-os.chdir("\\Apps\\unzipped\\bat")
+unzip_archives("Apps\\Aplicativos.zip", "Apps\\unzipped\\to Install")
+os.chdir("Apps\\unzipped\\to Install")
 for file in filePath:
     os.startfile(file)
     print(file)
@@ -105,9 +102,7 @@ while cfmInstall != "s":
         os.system("pause")
         cfmInstall = input("Todas as instalações foram realizadas com sucesso? (s/n) \n")
 
-os.removedir("\\unzip")
-
-
+shutil.rmtree('Apps\\unzipped')
 
 ### DESABILITAR ACESSO REMOTO 
 
