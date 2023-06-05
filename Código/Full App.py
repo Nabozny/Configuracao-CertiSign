@@ -1,8 +1,6 @@
-"""
-CFM = Confirmation
-"""
 import os 
 import subprocess
+import getpass
 from zipfile import ZipFile
 
 os.system('cls')
@@ -35,7 +33,10 @@ def cfgPw ():
     os.system (f'runas /user:"Administrador" "{search}"')
     ### PRECISA CRIAR UM ZIP PARA O ARQUIVO .BAT
 
-
+def unzip_archives (archive, destination_folder):
+    with zipfile.ZipFile(archive, 'r') as zip_ref:
+        zip_ref.extractall(destination_folder)
+      
 ### CONFIRMAÇÃO / CONFIGURAÇÃO DO SISTEMA OPERACIONAL
 print ('-' * 30)
 print (' ' * 10, 'CONFIRMAÇÃO DO SISTEMA OPERACIONAL!! \n')
@@ -65,7 +66,6 @@ moreUser = input ("Deseja adicionar mais usuários? (s/n) \n")
 while moreUser == 's':
     createUser()
     moreUser = input ("Deseja adicionar mais usuários? (s/n) \n")
-    
 
 admUser = input ("Deseja criar usuário administrador? (s/n) \n")
 if admUser == "s":
@@ -74,21 +74,24 @@ if admUser == "s":
     os.system ('pause')
 
 ### CONFIGURAÇÃO DOS USUARIOS 
-
-print("Favor rodar script de habilitação do usuario ADMINISTRADOR!!")
-os.system('pause')
-search = ', '.join(search_docs('CfgPwRequirements.bat', 'C:\\'))
-print(' ' * 10, 'CONFIGURAÇÃO DE POLÍTICAS DE USUÁRIOS!!')
-cfgPw ()
-
+configpw = input ('Deseja realizar a configuração de usuário? ')
+if configpw == 's':
+    import shutil
+    unzip_archives('Apps\\bat_archives.zip', 'Apps\\unzipped\\bat')    
+    print("Favor rodar script de habilitação do usuario ADMINISTRADOR!!")
+    os.system('pause')
+    search = ', '.join(search_docs('CfgPwRequirements.bat', 'C:\\'))
+    print(' ' * 10, 'CONFIGURAÇÃO DE POLÍTICAS DE USUÁRIOS!!')
+    cfgPw ()
+    os.system ('pause')
 
 ### DOWNLOAD, INSTALAÇÃO E EXCLUSÃO DOS APLICATIVOS 
 
 os.system("cls")
 unzip = ZipFile('\\Apps\\toInstall.zip', 'r')
-unzip.extractall('\\Apps\\unzipped')
-filePath = os.listdir("\\Apps\\unzipped")
-os.chdir("\\unzip")
+unzip.extractall('\\Apps\\unzipped\\bat')
+filePath = os.listdir("\\Apps\\unzipped\\bat")
+os.chdir("\\Apps\\unzipped\\bat")
 for file in filePath:
     os.startfile(file)
     print(file)
