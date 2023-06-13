@@ -5,8 +5,6 @@ from zipfile import ZipFile
 
 os.system('cls')
 
-### FUNÇÕES
-
 def createUser ():
     firstName = input ("Qual o seu primeiro nome: ").capitalize()
     lastName = input ("Qual o seu sobrenome: ").capitalize()
@@ -37,7 +35,6 @@ def unzip_archives (archive, destination_folder):
     with zipfile.ZipFile(archive, 'r') as zip_ref:
         zip_ref.extractall(destination_folder)
       
-### CONFIRMAÇÃO / CONFIGURAÇÃO DO SISTEMA OPERACIONAL
 print ('-' * 30)
 print (' ' * 10, 'CONFIRMAÇÃO DO SISTEMA OPERACIONAL!! \n')
 
@@ -52,9 +49,6 @@ if cfmPro != "s":
     os.system ('pause')
     exit ()
 print('\n')
-
-
-### CRIAÇÃO DOS USUARIOS
 
 print ('-' * 30)
 print ('-' * 30)
@@ -73,7 +67,6 @@ if admUser == "s":
     subprocess.run ("powershell.exe Add-LocalGroupMember -Group 'Administradores' -Member 'Ar Faciap'")
     os.system ('pause')
 
-### CONFIGURAÇÃO DOS USUARIOS 
 configpw = input ('Deseja realizar a configuração de usuário? ')
 if configpw == 's':
     import shutil
@@ -84,8 +77,6 @@ if configpw == 's':
     print(' ' * 10, 'CONFIGURAÇÃO DE POLÍTICAS DE USUÁRIOS!!')
     cfgPw ()
     os.system ('pause')
-
-### DOWNLOAD, INSTALAÇÃO E EXCLUSÃO DOS APLICATIVOS 
 
 unzip_archives("Apps\\Aplicativos.zip", "Apps\\unzipped\\to Install")
 os.chdir("Apps\\unzipped\\to Install")
@@ -104,23 +95,13 @@ while cfmInstall != "s":
 
 shutil.rmtree('Apps\\unzipped')
 
-### DESABILITAR ACESSO REMOTO 
-
 os.system('powershell "Disable-PSRemoting -Force"')
-      
-
-
-### CONFIGURAÇÃO DO BITLOCKER
 
 os.system(f'Powershell "$pw = ConvertTo-SecureString "{pwBitLocker}" -AsPlainText -Force"')
 os.system('powershell "Get-Command -Module BitLocker"')
 os.system('powershell "Get-BitLockerVolume"')
 os.system('powershell "Get-Tpm"')
 os.system('powershell "Enable-BitLocker -MountPoint "C:" -PasswordProtector -Password $pw"')
-
-
-
-### AJUSTE DE HORARIO
 
 os.system("powershell 'net start w32time'")
 os.system("powershell 'w32tm /config /manualpeerlist:ntp.certisign.com.br,0x8 /syncfromflags:manual /update'")
