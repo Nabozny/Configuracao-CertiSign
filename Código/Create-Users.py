@@ -1,9 +1,8 @@
 import os 
-import subprocess
-import getpass
 import zipfile
+import subprocess
 
-os.system ('cls')
+os.system ('clear')
 
 ### FUNÇÕES
 
@@ -28,14 +27,13 @@ def search_docs(name, directory):
 
     return results
 
-def cfgPw ():
-
-    os.system (f'runas /user:"Administrador" "{search}"')
-    ### PRECISA CRIAR UM ZIP PARA O ARQUIVO .BAT
-
 def unzip_archives (archive, destination_folder):
     with zipfile.ZipFile(archive, 'r') as zip_ref:
         zip_ref.extractall(destination_folder)
+
+def cfgPw ():
+    os.system (f'runas /user:"Administrador" "{search}"')
+    ### PRECISA CRIAR UM ZIP PARA O ARQUIVO .BAT
 
 ### CONFIRMAÇÃO / CONFIGURAÇÃO DO SISTEMA OPERACIONAL
 print ('-' * 30)
@@ -74,7 +72,8 @@ if admUser == "s":
     os.system ('pause')
 
 ### CONFIGURAÇÃO DOS USUARIOS 
-configpw = input ('Deseja realizar a configuração de usuário? ')
+configpw = 's'
+#configpw = input ('Deseja realizar a configuração de usuário? ')
 if configpw == 's':
     import shutil
     unzip_archives('Apps\\bat_archives.zip', 'Apps\\unzipped\\bat')    

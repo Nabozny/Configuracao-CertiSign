@@ -1,7 +1,6 @@
 import os 
 import subprocess
-import getpass
-from zipfile import ZipFile
+from zipfile36 import ZipFile
 
 os.system('cls')
 
@@ -29,12 +28,11 @@ def search_docs(name, directory):
     return results
 
 def cfgPw ():
-
     os.system (f'runas /user:"Administrador" "{search}"')
     ### PRECISA CRIAR UM ZIP PARA O ARQUIVO .BAT
 
 def unzip_archives (archive, destination_folder):
-    with zipfile.ZipFile(archive, 'r') as zip_ref:
+    with ZipFile(archive, 'r') as zip_ref:
         zip_ref.extractall(destination_folder)
       
 ### CONFIRMAÇÃO / CONFIGURAÇÃO DO SISTEMA OPERACIONAL
@@ -87,7 +85,7 @@ if configpw == 's':
 
 ### DOWNLOAD, INSTALAÇÃO E EXCLUSÃO DOS APLICATIVOS 
 
-unzip_archives("Apps\\Aplicativos.zip", "Apps\\unzipped\\to Install")
+filePath = unzip_archives("Apps\\Aplicativos.zip", "Apps\\unzipped\\to Install")
 os.chdir("Apps\\unzipped\\to Install")
 for file in filePath:
     os.startfile(file)
@@ -111,6 +109,7 @@ os.system('powershell "Disable-PSRemoting -Force"')
 
 
 ### CONFIGURAÇÃO DO BITLOCKER
+pwBitLocker = input('Insira uma senha para o BitLocker: ')
 
 os.system(f'Powershell "$pw = ConvertTo-SecureString "{pwBitLocker}" -AsPlainText -Force"')
 os.system('powershell "Get-Command -Module BitLocker"')
