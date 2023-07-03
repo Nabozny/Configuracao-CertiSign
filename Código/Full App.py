@@ -78,7 +78,7 @@ if configpw == 's':
 
 ### DOWNLOAD, INSTALAÇÃO E EXCLUSÃO DOS APLICATIVOS 
 
-unzip_archives("Apps\\Aplicativos.zip", "Apps\\unzipped\\to Install")
+filePath = unzip_archives("Apps\\Aplicativos.zip", "Apps\\unzipped\\to Install")
 os.chdir("Apps\\unzipped\\to Install")
 for file in filePath:
     os.startfile(file)
@@ -100,7 +100,7 @@ os.system('powershell "Disable-PSRemoting -Force"')
 
 
 ### CONFIGURAÇÃO DO BITLOCKER
-
+pwBitLocker = input ('Digite a senha para o BitLocker: ')
 os.system(f'Powershell "$pw = ConvertTo-SecureString "{pwBitLocker}" -AsPlainText -Force"')
 os.system('powershell "Get-Command -Module BitLocker"')
 os.system('powershell "Get-BitLockerVolume"')
