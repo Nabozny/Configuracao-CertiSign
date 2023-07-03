@@ -1,3 +1,6 @@
 .exe
+.spec
 
 /venv
+/dist
+/biuld
