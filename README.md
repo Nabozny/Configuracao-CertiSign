@@ -1,4 +1,5 @@
-#**CONFIGURAÇÃO DE MÁQUINAS**
+# **CONFIGURAÇÃO DE MÁQUINAS**
+
 Este repositorio contém códigos para preparar e realizar algumas configurações em máquinas que serão utilizadas para validação de certificado digital, seguindo diretrizes do ITI 
 
 A máquina escolhida para receber a configuração deve atender alguns requisitos:
